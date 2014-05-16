@@ -1,0 +1,41 @@
+{
+  "name": "glslify-hex",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test | faucet"
+  },
+  "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://hughsk.io/)",
+  "license": "MIT",
+  "dependencies": {
+    "through": "^2.3.4"
+  },
+  "devDependencies": {
+    "bl": "^0.8.0",
+    "faucet": "0.0.1",
+    "new-from": "0.0.3",
+    "tape": "^2.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/glslify-hex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hughsk/glslify-hex/issues"
+  },
+  "homepage": "https://github.com/hughsk/glslify-hex",
+  "description": "A transform stream for [glslify](http://github.com/chrisdickinson/glslify) that replaces CSS-style hexadecimal colors with `vec3/vec4` definitions.",
+  "keywords": [
+    "glslify",
+    "transform",
+    "stream",
+    "hex",
+    "hexadecimal",
+    "color",
+    "vec3",
+    "vec4",
+    "glsl",
+    "webgl",
+    "shader"
+  ]
+}
