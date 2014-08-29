@@ -13,7 +13,7 @@ function transform(file) {
   }
 
   function flush() {
-    buffer = buffer.join('\n')
+    buffer = buffer.join('')
     buffer = buffer.replace(regex, function(whole, r, g, b, a) {
       r = makeFloat(parseInt(r, 16) / 255)
       g = makeFloat(parseInt(g, 16) / 255)
