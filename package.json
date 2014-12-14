@@ -7,13 +7,9 @@
   },
   "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://hughsk.io/)",
   "license": "MIT",
-  "dependencies": {
-    "through": "^2.3.4"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "bl": "^0.8.0",
     "faucet": "0.0.1",
-    "new-from": "0.0.3",
     "tape": "^2.13.0"
   },
   "repository": {

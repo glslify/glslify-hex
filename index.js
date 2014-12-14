@@ -1,33 +1,27 @@
-var through = require('through')
-var regex = /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})?/gi
+var regexLong  = /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})?/gi
+var regexShort = /#([a-f0-9])([a-f0-9])([a-f0-9])([a-f0-9])?/gi
 
 module.exports = transform
 
-function transform(file) {
-  var buffer = []
+function transform(filename, src, opts, done) {
+  src = src.replace(regexLong, function(whole, r, g, b, a) {
+    return makeVec(r, g, b, a)
+  }).replace(regexShort, function(whole, r, g, b, a) {
+    return makeVec(r + r, g + g, b + b, a + a)
+  })
 
-  return through(write, flush)
+  done(null, src)
+}
 
-  function write(data) {
-    buffer.push(data)
-  }
+function makeVec(r, g, b, a) {
+  r = parseInt(r, 16) / 255
+  g = parseInt(g, 16) / 255
+  b = parseInt(b, 16) / 255
+  a = parseInt(a, 16) / 255
 
-  function flush() {
-    buffer = buffer.join('')
-    buffer = buffer.replace(regex, function(whole, r, g, b, a) {
-      r = makeFloat(parseInt(r, 16) / 255)
-      g = makeFloat(parseInt(g, 16) / 255)
-      b = makeFloat(parseInt(b, 16) / 255)
-      a = makeFloat(parseInt(a, 16) / 255)
-
-      return isNaN(a)
-        ? 'vec3('+[r,g,b].join(',')+')'
-        : 'vec4('+[r,g,b,a].join(',')+')'
-    })
-
-    this.queue(buffer)
-    this.queue(null)
-  }
+  return isNaN(a)
+    ? 'vec3('+[r,g,b].map(makeFloat).join(',')+')'
+    : 'vec4('+[r,g,b,a].map(makeFloat).join(',')+')'
 }
 
 function makeFloat(n) {

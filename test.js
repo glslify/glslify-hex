@@ -16,14 +16,11 @@ test('glslify-hex: vec3', function(t) {
     , '}'
   ].join('\n')
 
-  from([original])
-    .pipe(hex())
-    .pipe(bl(function(err, actual) {
-      if (err) return t.ifError(err)
-
-      t.equal(actual.toString(), expected)
-      t.end()
-    }))
+  hex(null, original, {}, function(err, actual) {
+    if (err) return t.ifError(err)
+    t.equal(actual.toString(), expected)
+    t.end()
+  })
 })
 
 test('glslify-hex: vec4', function(t) {
@@ -39,12 +36,49 @@ test('glslify-hex: vec4', function(t) {
     , '}'
   ].join('\n')
 
-  from([original])
-    .pipe(hex())
-    .pipe(bl(function(err, actual) {
-      if (err) return t.ifError(err)
+  hex(null, original, {}, function(err, actual) {
+    if (err) return t.ifError(err)
+    t.equal(actual.toString(), expected)
+    t.end()
+  })
+})
 
-      t.equal(actual.toString(), expected)
-      t.end()
-    }))
+test('glslify-hex: vec3 shorthand', function(t) {
+  var original = [
+      'void main() {'
+    , '  gl_FragColor = vec4(#f00, 1.0);'
+    , '}'
+  ].join('\n')
+
+  var expected = [
+      'void main() {'
+    , '  gl_FragColor = vec4(vec3(1.,0.,0.), 1.0);'
+    , '}'
+  ].join('\n')
+
+  hex(null, original, {}, function(err, actual) {
+    if (err) return t.ifError(err)
+    t.equal(actual.toString(), expected)
+    t.end()
+  })
+})
+
+test('glslify-hex: vec4 shorthand', function(t) {
+  var original = [
+      'void main() {'
+    , '  gl_FragColor = #f00f;'
+    , '}'
+  ].join('\n')
+
+  var expected = [
+      'void main() {'
+    , '  gl_FragColor = vec4(1.,0.,0.,1.);'
+    , '}'
+  ].join('\n')
+
+  hex(null, original, {}, function(err, actual) {
+    if (err) return t.ifError(err)
+    t.equal(actual.toString(), expected)
+    t.end()
+  })
 })
