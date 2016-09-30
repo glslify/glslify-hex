@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hughsk/glslify-hex.git"
+    "url": "git://github.com/stackgl/glslify-hex.git"
   },
   "bugs": {
-    "url": "https://github.com/hughsk/glslify-hex/issues"
+    "url": "https://github.com/stackgl/glslify-hex/issues"
   },
-  "homepage": "https://github.com/hughsk/glslify-hex",
+  "homepage": "https://github.com/stackgl/glslify-hex",
   "description": "A transform stream for [glslify](http://github.com/chrisdickinson/glslify) that replaces CSS-style hexadecimal colors with `vec3/vec4` definitions.",
   "keywords": [
     "glslify",

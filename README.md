@@ -51,4 +51,4 @@ check the glslify documentation!
 
 ## License
 
-MIT. See [LICENSE.md](http://github.com/hughsk/glslify-hex/blob/master/LICENSE.md) for details.
+MIT. See [LICENSE.md](http://github.com/stackgl/glslify-hex/blob/master/LICENSE.md) for details.
