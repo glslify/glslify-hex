@@ -2,6 +2,7 @@ var regexLong  = /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})?/gi
 var regexShort = /#([a-f0-9])([a-f0-9])([a-f0-9])([a-f0-9])?(...)?/gi
 
 module.exports = transform
+module.exports.sync = transform
 
 function transform(filename, src, opts, done) {
   src = src.replace(regexLong, function(whole, r, g, b, a) {
@@ -13,7 +14,8 @@ function transform(filename, src, opts, done) {
     return str
   })
 
-  done(null, src)
+  if (typeof done === 'function') done(null, src)
+  return src
 }
 
 function makeVec(r, g, b, a) {
