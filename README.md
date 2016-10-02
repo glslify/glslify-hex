@@ -37,7 +37,7 @@ To use glslify transform streams, you currently need to use `glslify-stream`
 directly:
 
 ``` javascript
-var createStream = requrire('glslify-stream')
+var createStream = require('glslify-stream')
 
 var stream = createStream('./shader.vert', {
   transform: ['glslify-hex']
